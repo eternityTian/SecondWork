@@ -1,9 +1,11 @@
+import java.util.Scanner;
+
 public class Lv2 {
     /**
      *
      * @author zhihong
      * @id 2021211945
-     * @content 冒泡排序和选择排序
+     * @content 冒泡排序和选择排序,及插入一个数后的结果
      *
      * */
 
@@ -14,11 +16,32 @@ public class Lv2 {
         System.out.println("原数组：");
         test.printArr(nums);//打印数组
 
+        nums = test.selectSort(nums);//进行选择排序（从大到小）
+        System.out.println("选择排序后的结果：");
+        test.printArr(nums);
+
         nums = test.bubblingSort(nums);//进行冒泡排序(从小到大）
+        System.out.println("冒泡排序后的结果");
         test.printArr(nums);//打印排序后的数组
 
-        nums = test.selectSort(nums);//进行选择排序（从大到小）
-        test.printArr(nums);
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入一个待插入的数");
+        int k = input.nextInt();
+        printResult(nums, k);//打印插入后结果
+
+    }
+
+    //传入数组和待插入数，打印结果
+    static void printResult(int[] arr, int num){
+        System.out.print("插入数组（"+ num +")之后的数组为：");
+        boolean isInsert = false;//判断是否已经插入数字
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > num && !isInsert) {//如果待插入数小于arr[i]，将其打印再arr[i]前
+                System.out.print(num + " ");
+                isInsert = true;
+            }
+            System.out.print(arr[i] + " ");
+        }
     }
 
     //遍历打印数组
